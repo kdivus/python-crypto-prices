@@ -9,7 +9,15 @@ currency = 'USD'
 start = dt.datetime(2020, 1, 1)
 end = dt.datetime.now()
 
-data = web.DataReader(f"{crypto}-{currency}", "yahoo", start, end)
-#print(data)
+btc = web.DataReader(f"{crypto}-{currency}", "yahoo", start, end)
+eth = web.DataReader(f"ETH-{currency}", "yahoo", start, end)
 
-mpf.plot(data,type="candle", style="yahoo", volume=True)
+#data = web.DataReader(f"{crypto}-{currency}", "yahoo", start, end)
+#print(data)
+#mpf.plot(data,type="candle", style="yahoo", volume=True)
+
+plt.yscale('log')
+plt.plot(btc['Close'], label='BTC')
+plt.plot(eth['Close'], label='ETH')
+plt.legend(loc='upper left')
+plt.show()
